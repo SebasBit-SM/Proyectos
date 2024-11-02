@@ -8,6 +8,9 @@ const Home = () => {
   const navigate = useNavigate();
   const { auth } = useAuth();
 
+  // Verifica el valor de auth
+  console.log('Valor de auth:', auth);
+
   const handleNavigate = (path) => {
     navigate(path);
   };

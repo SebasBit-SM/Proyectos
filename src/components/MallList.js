@@ -1,32 +1,38 @@
 // src/components/MallList.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Map from './Map'; // Importamos el componente Map
 import './MallList.css';
+
+const apiKey = 'AIzaSyAnxxI_KN225ncswfGmegGB7sOBUxVSBIE';
 
 const mallData = [
   {
     id: 1,
-    name: 'Centro Comercial Aventura',
-    location: 'Ciudad A',
+    name: 'Centro Comercial Chipichape',
+    location: 'Cali, Valle del Cauca',
     hasEvents: true,
     hasDiscounts: true,
     isNew: false,
+    position: { lat: 3.4516, lng: -76.5319 },
   },
   {
     id: 2,
-    name: 'Mall Paseo del Sol',
-    location: 'Ciudad B',
+    name: 'Unicentro Cali',
+    location: 'Cali, Valle del Cauca',
     hasEvents: true,
     hasDiscounts: false,
     isNew: true,
+    position: { lat: 3.3848, lng: -76.5412 },
   },
   {
     id: 3,
-    name: 'Plaza Central',
-    location: 'Ciudad C',
+    name: 'Palmetto Plaza',
+    location: 'Cali, Valle del Cauca',
     hasEvents: false,
     hasDiscounts: true,
     isNew: false,
+    position: { lat: 3.3994, lng: -76.5523 },
   },
 ];
 
@@ -60,10 +66,19 @@ const MallList = () => {
     navigate(`/malls?filter=${filter}`);
   };
 
+  // Extraemos las posiciones de los centros comerciales para los marcadores en el mapa
+  const markers = filteredMalls.map((mall) => ({
+    position: mall.position,
+  }));
+
   return (
     <div className="mall-list-container">
-      <h1>Lista de Centros Comerciales</h1>
+      <h1>Centros Comerciales en Cali</h1>
+      
+      {/* Mapa */}
+      <Map apiKey={apiKey} markers={markers} />
 
+      {/* Buscador y filtros */}
       <div className="search-and-filters">
         <input
           type="text"
@@ -74,34 +89,22 @@ const MallList = () => {
         />
 
         <div className="filters">
-          <button
-            className="filter-button"
-            onClick={() => handleFilterClick('events')}
-          >
+          <button className="filter-button" onClick={() => handleFilterClick('events')}>
             Eventos
           </button>
-          <button
-            className="filter-button"
-            onClick={() => handleFilterClick('discounts')}
-          >
+          <button className="filter-button" onClick={() => handleFilterClick('discounts')}>
             Descuentos
           </button>
-          <button
-            className="filter-button"
-            onClick={() => handleFilterClick('new')}
-          >
+          <button className="filter-button" onClick={() => handleFilterClick('new')}>
             Nuevos
           </button>
         </div>
       </div>
 
+      {/* Lista de centros comerciales */}
       <div className="mall-list">
         {filteredMalls.map((mall) => (
-          <div
-            key={mall.id}
-            className="mall-card"
-            onClick={() => navigate(`/malls/${mall.id}`)}
-          >
+          <div key={mall.id} className="mall-card" onClick={() => navigate(`/malls/${mall.id}`)}>
             <h2>{mall.name}</h2>
             <p>{mall.location}</p>
           </div>

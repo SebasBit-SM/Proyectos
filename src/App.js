@@ -15,6 +15,8 @@ import Languages from './Pages/Languages';
 import AboutUs from './Pages/AboutUs';
 import PrivacyPolicy from './Pages/PrivacyPolicy';
 import Help from './Pages/Help';
+import MallList from './components/MallList';
+import UserDashboard from './components/UserDashboard';
 import './App.css';
 
 function ProtectedRoute({ children, role }) {
@@ -53,6 +55,8 @@ function App() {
             <Route path="/about-us" element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
             <Route path="/privacy-policy" element={<ProtectedRoute><PrivacyPolicy /></ProtectedRoute>} />
             <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
+            <Route path="/malls" element={<ProtectedRoute><MallList /></ProtectedRoute>} />
+            <Route path="/user-dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
           </Routes>
         </div>
       </AuthProvider>

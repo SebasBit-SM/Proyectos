@@ -8,8 +8,8 @@ const mapContainerStyle = {
 };
 
 const center = {
-    lat: 3.4516,  // Centro aproximado en Cali
-    lng: -76.5320,
+  lat: 3.4516,  // Latitud de Cali
+  lng: -76.5320, // Longitud de Cali
 };
 
 const Map = ({ apiKey, markers }) => {
@@ -18,7 +18,7 @@ const Map = ({ apiKey, markers }) => {
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
-        zoom={10}
+        zoom={12}
       >
         {markers.map((marker, index) => (
           <Marker key={index} position={marker.position} />
