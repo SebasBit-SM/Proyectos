@@ -1,11 +1,12 @@
 // src/App.js
+import './App.css';
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import Profile from './components/Profile';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import SidebarMenu from './components/SidebarMenu';
 import ContactUs from './Pages/ContactUs';
 import Settings from './Pages/Settings';
@@ -16,21 +17,17 @@ import AboutUs from './Pages/AboutUs';
 import PrivacyPolicy from './Pages/PrivacyPolicy';
 import Help from './Pages/Help';
 import MallList from './components/MallList';
+import NewDiscount from './components/NewDiscount';
 import UserDashboard from './components/UserDashboard';
-import './App.css';
 
-function ProtectedRoute({ children, role }) {
-  const { auth } = useAuth();
+// Componente para permitir acceso sin autenticación en todas las rutas
+function ProtectedRoute({ children }) {
+  return children; // Permitir acceso sin verificación de autenticación
+}
 
-  if (!auth) {
-    return <Navigate to="/login" />;
-  }
-
-  if (role && auth.role !== role) {
-    return <Navigate to="/" />;
-  }
-
-  return children;
+// Componente para permitir acceso sin autenticación a rutas de administrador
+function AdminProtectedRoute({ children }) {
+  return children; // Permitir acceso sin verificación de rol
 }
 
 function App() {
@@ -56,6 +53,7 @@ function App() {
             <Route path="/privacy-policy" element={<ProtectedRoute><PrivacyPolicy /></ProtectedRoute>} />
             <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
             <Route path="/malls" element={<ProtectedRoute><MallList /></ProtectedRoute>} />
+            <Route path="/malls/new-discount" element={<AdminProtectedRoute><NewDiscount /></AdminProtectedRoute>} />
             <Route path="/user-dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
           </Routes>
         </div>

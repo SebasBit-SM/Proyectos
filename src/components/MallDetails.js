@@ -32,8 +32,9 @@ const MallDetails = () => {
   const [mall, setMall] = useState(null);
 
   useEffect(() => {
-    // Simulamos una llamada a la base de datos con los datos simulados
-    setMall(mallData[id]);
+    // Obtiene los datos del centro comercial basado en el ID de los parámetros
+    const selectedMall = mallData[id];
+    setMall(selectedMall);
   }, [id]);
 
   if (!mall) {
@@ -47,7 +48,7 @@ const MallDetails = () => {
       <p><strong>Horarios:</strong> {mall.hours}</p>
 
       <h2>Eventos</h2>
-      {mall.events.length > 0 ? (
+      {mall.events && mall.events.length > 0 ? (
         <ul>
           {mall.events.map((event, index) => (
             <li key={index}>{event}</li>
@@ -58,7 +59,7 @@ const MallDetails = () => {
       )}
 
       <h2>Descuentos</h2>
-      {mall.discounts.length > 0 ? (
+      {mall.discounts && mall.discounts.length > 0 ? (
         <ul>
           {mall.discounts.map((discount, index) => (
             <li key={index}>{discount}</li>

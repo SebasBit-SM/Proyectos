@@ -1,21 +1,15 @@
-// src/App.js
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from './contexts/AuthContext';
-
 function ProtectedRoute({ children, role }) {
   const { auth } = useAuth();
 
+  // Comentar o eliminar esta condición para eliminar temporalmente la protección
   if (!auth) {
-    // Redirigir a login si no está autenticado
-    return <Navigate to="/login" />;
+      return children; // Permitir acceso sin autenticación
   }
 
+  // Si tienes una verificación de rol, también puedes comentarla
   if (role && auth.role !== role) {
-    // Redirigir a inicio si el rol no coincide
-    return <Navigate to="/" />;
+      return <Navigate to="/" />;
   }
 
-  // Renderizar el componente protegido si todo está en orden
   return children;
 }

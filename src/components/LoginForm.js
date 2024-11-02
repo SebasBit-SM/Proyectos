@@ -1,69 +1,38 @@
+// src/components/LoginForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import './LoginForm.css';
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Obtener el usuario del Local Storage
-    const storedUser = JSON.parse(localStorage.getItem("auth"));
-    
-    // Verificar si el correo y la contraseña coinciden
-    if (
-      storedUser &&
-      storedUser.email === formData.email &&
-      storedUser.password === formData.password
-    ) {
-      // Iniciar sesión y redirigir según el rol
-      login(storedUser);
-
-      if (storedUser.role === "admin") {
-        navigate("/admin-dashboard");
-      } else {
-        navigate("/user-dashboard");
-      }
-    } else {
-      alert("Correo o contraseña incorrectos");
-    }
+    // Lógica para manejar el inicio de sesión
+    console.log('Inicio de sesión', formData);
   };
 
   return (
     <div className="login-form-container">
-      <div className="login-form">
-        <h2>Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button type="submit">Iniciar Sesión</button>
-        </form>
+      <h1>Iniciar Sesión</h1>
+      <form onSubmit={handleSubmit}>
+        <label>Correo Electrónico:</label>
+        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+
+        <label>Contraseña:</label>
+        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+
+        <button type="submit" className="login-button">Iniciar Sesión</button>
+      </form>
+      <div className="login-options">
+        <p onClick={() => navigate('/forgot-password')} className="forgot-password">¿Olvidaste tu contraseña?</p>
+        <p>¿No tienes cuenta? <span onClick={() => navigate('/register')} className="create-account">Crea una</span></p>
       </div>
     </div>
   );

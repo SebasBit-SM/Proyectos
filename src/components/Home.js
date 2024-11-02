@@ -8,9 +8,6 @@ const Home = () => {
   const navigate = useNavigate();
   const { auth } = useAuth();
 
-  // Verifica el valor de auth
-  console.log('Valor de auth:', auth);
-
   const handleNavigate = (path) => {
     navigate(path);
   };
@@ -39,9 +36,6 @@ const Home = () => {
         </div>
         <div onClick={() => handleNavigate('/malls?filter=events')} className="category-card">
           <h2>Eventos Populares</h2>
-        </div>
-        <div onClick={() => handleNavigate('/malls/new')} className="category-card">
-          <h2>Nuevos Centros Comerciales</h2>
         </div>
       </div>
     </div>
