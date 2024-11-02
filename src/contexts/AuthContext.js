@@ -7,23 +7,21 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
-    // Cargar datos del usuario desde Local Storage al cargar la app
-    const storedAuth = JSON.parse(localStorage.getItem("auth"));
+    // Cargar el estado de autenticación desde localStorage al inicio
+    const storedAuth = JSON.parse(localStorage.getItem('auth'));
     if (storedAuth) {
       setAuth(storedAuth);
     }
   }, []);
 
-  const login = (userData) => {
-    // Guardar los datos de autenticación en el estado y en Local Storage
-    setAuth(userData);
-    localStorage.setItem("auth", JSON.stringify(userData));
+  const login = (user) => {
+    setAuth(user);
+    localStorage.setItem('auth', JSON.stringify(user));
   };
 
   const logout = () => {
-    // Eliminar datos de autenticación del estado y de Local Storage
     setAuth(null);
-    localStorage.removeItem("auth");
+    localStorage.removeItem('auth');
   };
 
   return (

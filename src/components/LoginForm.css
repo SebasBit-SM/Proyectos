@@ -1,96 +1,54 @@
-/* src/components/LoginForm.css */
+/* LoginForm.css */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  height: 100%;
+.login-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5; /* Fondo gris claro */
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
-.login-container {
+.login-form {
   max-width: 400px;
   width: 100%;
-  padding: 40px; /* Aumentar padding para dar más espacio */
+  padding: 20px;
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.home-link {
-  font-size: 28px; /* Aumentar el tamaño */
-  font-weight: bold;
-  color: #ff0000; /* Rojo */
-  text-decoration: none;
-  margin-bottom: 30px; /* Más espacio debajo del link */
-}
-
-.home-link:hover {
-  text-decoration: underline;
-}
-
-.login-container h1 {
-  color: #000000;
-  font-size: 24px;
-  font-weight: bold;
+.login-form h2 {
+  color: #ff0000;
   margin-bottom: 20px;
 }
 
-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-label {
-  width: 100%;
-  color: #333333;
+.login-form label {
+  display: block;
   font-weight: bold;
   margin-top: 15px;
   text-align: left;
-  font-size: 16px; /* Aumentar el tamaño de la etiqueta */
+  color: #333;
 }
 
-input {
+.login-form input {
   width: 100%;
-  padding: 12px; /* Más espacio dentro del input */
-  margin: 10px 0 25px; /* Más espacio entre los inputs */
-  border: 1px solid #cccccc;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
 }
 
-.login-button {
+.login-form button {
   width: 100%;
-  padding: 15px; /* Aumentar padding del botón */
-  background-color: #ff0000; /* Rojo */
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #ff0000;
   color: #ffffff;
-  font-size: 18px; /* Aumentar tamaño de la fuente del botón */
   font-weight: bold;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
-}
-
-.login-links {
-  margin-top: 25px; /* Más espacio encima de los links */
-}
-
-.login-links a {
-  color: #ff0000;
-  text-decoration: none;
-  font-size: 15px; /* Ajustar tamaño de los links */
+  font-size: 16px;
 }

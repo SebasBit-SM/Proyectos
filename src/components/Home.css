@@ -82,3 +82,32 @@
   color: #333333;
   margin: 10px 0;
 }
+
+/* Estilos para los botones de filtro */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  padding: 12px 20px;
+  background-color: #ff0000;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-button:hover {
+  background-color: #d90000;
+  transform: scale(1.05);
+}
+
+.filter-button.active {
+  background-color: #b30000;
+}

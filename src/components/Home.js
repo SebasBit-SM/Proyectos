@@ -8,6 +8,10 @@ const Home = () => {
   const navigate = useNavigate();
   const { auth } = useAuth();
 
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
+
   return (
     <div className="home-container">
       <div className="header">
@@ -15,21 +19,25 @@ const Home = () => {
           <h2>Bienvenido, {auth.firstName}</h2>
         ) : (
           <div className="auth-buttons">
-            <button className="auth-button" onClick={() => navigate('/login')}>Iniciar Sesión</button>
-            <button className="auth-button" onClick={() => navigate('/register')}>Registrarse</button>
+            <button className="auth-button" onClick={() => handleNavigate('/login')}>
+              Iniciar Sesión
+            </button>
+            <button className="auth-button" onClick={() => handleNavigate('/register')}>
+              Registrarse
+            </button>
           </div>
         )}
         <h1>Find Me</h1>
         <p>Encuentra los mejores centros comerciales y locales cerca de ti</p>
       </div>
       <div className="categories">
-        <div onClick={() => navigate('/malls?filter=discounts')} className="category-card">
+        <div onClick={() => handleNavigate('/malls?filter=discounts')} className="category-card">
           <h2>Ofertas Especiales</h2>
         </div>
-        <div onClick={() => navigate('/malls?filter=events')} className="category-card">
+        <div onClick={() => handleNavigate('/malls?filter=events')} className="category-card">
           <h2>Eventos Populares</h2>
         </div>
-        <div onClick={() => navigate('/malls/new')} className="category-card">
+        <div onClick={() => handleNavigate('/malls/new')} className="category-card">
           <h2>Nuevos Centros Comerciales</h2>
         </div>
       </div>

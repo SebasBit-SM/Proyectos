@@ -1,7 +1,6 @@
 // src/components/MallList.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './MallList.css';
 
 const mallData = [
@@ -33,40 +32,33 @@ const mallData = [
 
 const MallList = () => {
   const navigate = useNavigate();
-  const { auth, login } = useAuth(); // Obtener el contexto de autenticación
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
-  const [filters, setFilters] = useState({
-    events: false,
-    discounts: false,
-    new: false,
-  });
+  const [filteredMalls, setFilteredMalls] = useState(mallData);
+
+  // Extrae los parámetros de consulta de la URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const filterEvents = params.get('filter') === 'events';
+    const filterDiscounts = params.get('filter') === 'discounts';
+    const filterNew = params.get('filter') === 'new';
+
+    // Filtra los centros comerciales en función de los filtros en los parámetros de consulta
+    const filteredData = mallData.filter((mall) => {
+      const matchesEvents = !filterEvents || mall.hasEvents;
+      const matchesDiscounts = !filterDiscounts || mall.hasDiscounts;
+      const matchesNew = !filterNew || mall.isNew;
+      return matchesEvents && matchesDiscounts && matchesNew;
+    });
+
+    setFilteredMalls(filteredData);
+  }, [location.search]);
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-  const handleFilterChange = (filter) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [filter]: !prevFilters[filter],
-    }));
+  const handleFilterClick = (filter) => {
+    navigate(`/malls?filter=${filter}`);
   };
-
-  const handleAddToFavorites = (mall) => {
-    const updatedUser = {
-      ...auth,
-      favorites: auth.favorites ? [...auth.favorites, mall] : [mall],
-    };
-    login(updatedUser);
-    localStorage.setItem("auth", JSON.stringify(updatedUser));
-    alert(`${mall.name} agregado a favoritos`);
-  };
-
-  const filteredMalls = mallData.filter((mall) => {
-    const matchesSearch = mall.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesEvents = !filters.events || mall.hasEvents;
-    const matchesDiscounts = !filters.discounts || mall.hasDiscounts;
-    const matchesNew = !filters.new || mall.isNew;
-    return matchesSearch && matchesEvents && matchesDiscounts && matchesNew;
-  });
 
   return (
     <div className="mall-list-container">
@@ -83,20 +75,20 @@ const MallList = () => {
 
         <div className="filters">
           <button
-            className={`filter-button ${filters.events ? 'active' : ''}`}
-            onClick={() => handleFilterChange('events')}
+            className="filter-button"
+            onClick={() => handleFilterClick('events')}
           >
             Eventos
           </button>
           <button
-            className={`filter-button ${filters.discounts ? 'active' : ''}`}
-            onClick={() => handleFilterChange('discounts')}
+            className="filter-button"
+            onClick={() => handleFilterClick('discounts')}
           >
             Descuentos
           </button>
           <button
-            className={`filter-button ${filters.new ? 'active' : ''}`}
-            onClick={() => handleFilterChange('new')}
+            className="filter-button"
+            onClick={() => handleFilterClick('new')}
           >
             Nuevos
           </button>
@@ -105,11 +97,13 @@ const MallList = () => {
 
       <div className="mall-list">
         {filteredMalls.map((mall) => (
-          <div key={mall.id} className="mall-card">
+          <div
+            key={mall.id}
+            className="mall-card"
+            onClick={() => navigate(`/malls/${mall.id}`)}
+          >
             <h2>{mall.name}</h2>
             <p>{mall.location}</p>
-            <button onClick={() => handleAddToFavorites(mall)}>Agregar a Favoritos</button>
-            <button onClick={() => navigate(`/malls/${mall.id}`)}>Ver Detalles</button>
           </div>
         ))}
       </div>

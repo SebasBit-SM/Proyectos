@@ -1,7 +1,7 @@
-// src/components/LoginForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import './LoginForm.css';
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -36,7 +36,7 @@ const LoginForm = () => {
       if (storedUser.role === "admin") {
         navigate("/admin-dashboard");
       } else {
-        navigate("/profile");
+        navigate("/user-dashboard");
       }
     } else {
       alert("Correo o contraseña incorrectos");
@@ -44,25 +44,27 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-form">
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Correo Electrónico:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <label>Contraseña:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Iniciar Sesión</button>
-      </form>
+    <div className="login-form-container">
+      <div className="login-form">
+        <h2>Iniciar Sesión</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Correo Electrónico:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <button type="submit">Iniciar Sesión</button>
+        </form>
+      </div>
     </div>
   );
 };

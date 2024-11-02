@@ -5,13 +5,16 @@ import Home from './components/Home';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import Profile from './components/Profile';
-import UserDashboard from './components/UserDashboard';
-import AdminDashboard from './components/AdminDashboard';
-import ForgotPassword from './components/ForgotPassword';
-import MallList from './components/MallList';
-import MallDetails from './components/MallDetails';
-import SidebarMenu from './components/SidebarMenu';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import SidebarMenu from './components/SidebarMenu';
+import ContactUs from './Pages/ContactUs';
+import Settings from './Pages/Settings';
+import PQRS from './Pages/PQRS';
+import Notifications from './Pages/Notifications';
+import Languages from './Pages/Languages';
+import AboutUs from './Pages/AboutUs';
+import PrivacyPolicy from './Pages/PrivacyPolicy';
+import Help from './Pages/Help';
 import './App.css';
 
 function ProtectedRoute({ children, role }) {
@@ -31,47 +34,25 @@ function ProtectedRoute({ children, role }) {
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <Router>
       <AuthProvider>
         <div className="app-container">
-          <button onClick={toggleMenu} className="menu-toggle-btn">☰ Menú</button>
-          <SidebarMenu isOpen={isMenuOpen} onClose={toggleMenu} />
+          <button className="menu-btn" onClick={() => setIsMenuOpen(true)}>☰ Menú</button>
+          <SidebarMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/user-dashboard"
-              element={
-                <ProtectedRoute role="user">
-                  <UserDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin-dashboard"
-              element={
-                <ProtectedRoute role="admin">
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/malls" element={<MallList />} />
-            <Route path="/malls/:id" element={<MallDetails />} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/contact-us" element={<ProtectedRoute><ContactUs /></ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+            <Route path="/pqrs" element={<ProtectedRoute><PQRS /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/languages" element={<ProtectedRoute><Languages /></ProtectedRoute>} />
+            <Route path="/about-us" element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
+            <Route path="/privacy-policy" element={<ProtectedRoute><PrivacyPolicy /></ProtectedRoute>} />
+            <Route path="/help" element={<ProtectedRoute><Help /></ProtectedRoute>} />
           </Routes>
         </div>
       </AuthProvider>

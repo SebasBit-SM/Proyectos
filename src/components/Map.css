@@ -1,0 +1,13 @@
+/* src/components/MallList.css */
+.mall-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .map-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+  }
+  
