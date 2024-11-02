@@ -1,0 +1,82 @@
+/* src/components/AdminDashboard.css */
+
+.admin-dashboard {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-dashboard h2 {
+    font-size: 32px;
+    color: #ff0000;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-mall-form {
+    margin-bottom: 40px;
+  }
+  
+  .add-mall-form h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .add-mall-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+  }
+  
+  .add-mall-form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .mall-list h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .mall-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+  }
+  
+  .mall-item h4 {
+    font-size: 20px;
+    color: #333333;
+  }
+  
+  .mall-item p {
+    font-size: 16px;
+    color: #555555;
+  }
+  
+  .mall-item button {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #cc0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  

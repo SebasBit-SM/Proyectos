@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* src/App.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.home-label {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000; /* Color rojo */
+  text-decoration: none;
+  z-index: 1000; /* Asegura que el label esté al frente */
+}
+
+.home-label:hover {
+  text-decoration: underline;
+}

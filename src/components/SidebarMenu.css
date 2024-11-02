@@ -1,0 +1,67 @@
+/* src/components/SidebarMenu.css */
+
+.mini-sidebar-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 160px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform-origin: top right;
+    transform: scale(0);
+    opacity: 0;
+  }
+  
+  .mini-sidebar-menu.open {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  .mini-sidebar-menu .close-btn {
+    font-size: 14px;
+    color: #ff0000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  
+  .mini-sidebar-menu h2 {
+    font-size: 14px;
+    color: #ff0000;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .menu-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .menu-buttons button {
+    width: 100%;
+    padding: 6px;
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .menu-buttons button:hover {
+    background-color: #cc0000;
+  }
+  
